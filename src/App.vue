@@ -1,19 +1,33 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { reactive } from 'vue';
+import Header from './components/Header.vue'
+import NewTask from '@/components/NewTask.vue'
+import ListTask from '@/components/ListTask.vue'
+import CounterTask from '@/components/CounterTask.vue'
+
+const todos = reactive([
+  {
+    id: 0,
+    name: 'Create the best TODO application in the world',
+    completed: false
+  }, 
+  {
+    id: 1,
+    name: 'Publish in github pages',
+    completed: false
+  }
+])
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <Header></Header>
   </header>
 
   <main>
-    <TheWelcome />
+    <NewTask></NewTask>
+    <ListTask :todos="todos"></ListTask>
+    <CounterTask></CounterTask>
   </main>
 </template>
 
