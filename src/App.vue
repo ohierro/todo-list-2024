@@ -9,7 +9,7 @@ const todos = reactive([
   {
     id: 0,
     name: 'Create the best TODO application in the world',
-    completed: false
+    completed: true
   }, 
   {
     id: 1,
@@ -17,6 +17,15 @@ const todos = reactive([
     completed: false
   }
 ])
+
+function addTodo(name: string) {
+  // console.log(`add ${name} task`);
+  todos.push({
+    id: todos.length,
+    name: name,
+    completed: false
+  })
+}
 </script>
 
 <template>
@@ -25,7 +34,7 @@ const todos = reactive([
   </header>
 
   <main>
-    <NewTask></NewTask>
+    <NewTask @add="addTodo"></NewTask>
     <ListTask :todos="todos"></ListTask>
     <CounterTask></CounterTask>
   </main>
