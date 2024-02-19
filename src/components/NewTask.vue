@@ -16,8 +16,8 @@ const enableButton = computed( () => {
 </script>
 
 <template>
-    <v-row align="center" justify="center">
-        <v-col cols="8">
+    <v-row align="center">
+        <v-col cols="10">
             <v-text-field 
                 label="Label"
                 v-model="name"
