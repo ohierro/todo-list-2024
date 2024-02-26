@@ -2,11 +2,21 @@
 import ItemTask from './ItemTask.vue';
 
 
+const emits = defineEmits(['toggleCompleted', 'deleteTask'])
 const props = defineProps(['todos'])
 
 function onClick(id: number) {
     console.log(`click on task ${id}`);
 }
+
+function toggleCompleted(id: number) {
+    emits('toggleCompleted', id)
+}
+
+function onDeleteTask(id: number) {
+    emits('deleteTask', id)
+}
+
 </script>
 
 <template>
@@ -15,6 +25,8 @@ function onClick(id: number) {
             :id="todo.id"
             :name="todo.name"
             :completed="todo.completed"
+            @toggle-completed="toggleCompleted"
+            @delete-task="onDeleteTask"
         ></item-task>
     </v-card>
 </template>

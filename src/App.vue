@@ -4,8 +4,16 @@ import Header from './components/Header.vue'
 import NewTask from '@/components/NewTask.vue'
 import ListTask from '@/components/ListTask.vue'
 import CounterTask from '@/components/CounterTask.vue'
+import { isTemplateSpan } from 'typescript';
+import ItemTask from './components/ItemTask.vue';
 
-const todos = reactive([
+interface Task {
+  id: number,
+  name: string,
+  completed: boolean
+}
+
+const todos = reactive<Array<Task>>([
   {
     id: 0,
     name: 'Create the best TODO application in the world',
@@ -19,13 +27,23 @@ const todos = reactive([
 ])
 
 function addTodo(name: string) {
-  // console.log(`add ${name} task`);
   todos.push({
     id: todos.length,
     name: name,
     completed: false
   })
 }
+
+function onToggleCompleted(id: number) {
+  const item = todos.filter(t => t.id === id)[0]
+  item.completed = !item.completed
+}
+
+function onDeleteTask(id: number) {
+  const index = todos.findIndex(t => t.id === id)
+  todos.splice(index, 1)
+}
+
 </script>
 
 <template>
@@ -35,8 +53,11 @@ function addTodo(name: string) {
 
   <main>
     <NewTask @add="addTodo"></NewTask>
-    <ListTask :todos="todos"></ListTask>
-    <CounterTask></CounterTask>
+    <ListTask :todos="todos" 
+      @toggle-completed="onToggleCompleted"
+      @delete-task="onDeleteTask"
+    ></ListTask>
+    <CounterTask :items="todos"></CounterTask>
   </main>
 </template>
 

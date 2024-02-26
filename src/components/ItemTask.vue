@@ -1,21 +1,18 @@
 <script setup lang="ts">
 
-const emits = defineEmits(['add'])
+const emits = defineEmits(['toggleCompleted', 'deleteTask'])
+
 const props = defineProps<{
     id: number
     name: string,
     completed: boolean,
 }>()
-
-function onClick() {
-
-}
 </script>
 
 <template>
 <v-row align="center">
     <v-col cols="2">
-        <v-checkbox></v-checkbox>
+        <v-checkbox :model-value="completed" @click="emits('toggleCompleted', id)"></v-checkbox>
     </v-col>
     <v-col cols="8">
         <span :class="{ done: completed }">
@@ -24,9 +21,15 @@ function onClick() {
     </v-col>
     <v-col cols="2">
         <v-btn 
-            @click="onClick"    
+            @click="emits('deleteTask', id)"    
             icon="mdi-delete"
         ></v-btn>
     </v-col>
 </v-row>  
 </template>
+
+<style scoped>
+.done {
+    text-decoration: line-through;
+}
+</style>
