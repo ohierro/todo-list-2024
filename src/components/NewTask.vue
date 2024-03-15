@@ -17,16 +17,16 @@ const enableButton = computed( () => {
 
 <template>
     <v-row align="center">
-        <v-col cols="10">
-            <v-text-field 
+        <v-col cols="8">
+            <v-text-field
                 label="Label"
                 v-model="name"
             >
             </v-text-field>
         </v-col>
-        <v-col>
-            <v-btn 
-                @click="onAdd" 
+        <v-col cols="4">
+            <v-btn
+                @click="onAdd"
                 prepend-icon="mdi-plus"
                 :disabled="!enableButton"
             >
@@ -35,3 +35,7 @@ const enableButton = computed( () => {
         </v-col>
     </v-row>
 </template>
+
+<style scoped>
+
+</style>

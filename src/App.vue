@@ -18,7 +18,7 @@ const todos = reactive<Array<Task>>([
     id: 0,
     name: 'Create the best TODO application in the world',
     completed: true
-  }, 
+  },
   {
     id: 1,
     name: 'Publish in github pages',
@@ -53,22 +53,32 @@ function onDeleteTask(id: number) {
 
   <main>
     <NewTask @add="addTodo"></NewTask>
-    <ListTask :todos="todos" 
+    <ListTask :todos="todos"
       @toggle-completed="onToggleCompleted"
       @delete-task="onDeleteTask"
     ></ListTask>
     <CounterTask :items="todos"></CounterTask>
   </main>
+
+  <footer>
+    Esto es el footer
+  </footer>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
+  font-size: 35px;
+  text-align: center;
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+main {
+  flex-grow: 2;
 }
 
 @media (min-width: 1024px) {
