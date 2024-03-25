@@ -20,15 +20,16 @@ function onDeleteTask(id: number) {
 </script>
 
 <template>
-    <v-card v-for="todo in todos">
-        <item-task 
+    <!-- <v-card v-for="todo in todos"> -->
+        <item-task
+            v-for="todo in todos"   
             :id="todo.id"
             :name="todo.name"
             :completed="todo.completed"
             @toggle-completed="toggleCompleted"
             @delete-task="onDeleteTask"
         ></item-task>
-    </v-card>
+    <!-- </v-card> -->
 </template>
 
 <style scoped>
